@@ -1,9 +1,7 @@
 name: Build BitWardens
 on:
   push:
-    branches:
-      - test
-      - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -34,6 +32,7 @@ jobs:
         npm run dist:firefox
     - name: Release
       uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
           ~/browser/dist/dist-firefox.zip
