@@ -17,8 +17,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - run: git clone https://github.com/bitwarden/browser.git
-    - run: npm install --global gulp-cli
-    - run: cd browser
-    - run: npm install
-    - run: npm run build
+    - run: |
+        git clone https://github.com/bitwarden/browser.git
+        npm install --global gulp-cli
+        cd browser
+        npm install
+        npm run build
