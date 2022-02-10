@@ -17,10 +17,25 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+
+      # Checks-out your repository under $GITHUB_WORKSPACE, 
+      # so your workflow can access it
+      - name: Checkout repo
+        uses: actions/checkout@master
+        
     - run: |
+        cd ~
         git clone https://github.com/bitwarden/browser.git
         npm install --global gulp-cli
         cd browser
         npm install
+        cp $GITHUB_WORKSPACE/* src/images
         npm run build
         npm run dist:firefox
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            ~/browser/dist/dist-firefox.zip
