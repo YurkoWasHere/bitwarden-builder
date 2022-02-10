@@ -26,10 +26,17 @@ jobs:
         git clone https://github.com/bitwarden/browser.git
         npm install --global gulp-cli
         cd browser
+        echo "==============="
+        pwd
+        echo "==============="
         npm install
         cp -rv $GITHUB_WORKSPACE/icons-hypha/* src/images/
         npm run build
         npm run dist:firefox
+        ls -la ~/browser
+        echo "==============="
+        ls -la ~/browser/dist/
+        echo "==============="
     - name: Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
