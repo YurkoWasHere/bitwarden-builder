@@ -11,17 +11,17 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
-#   steps:
-#   - name: Use Node.js ${{ matrix.node-version }}
-#     uses: actions/setup-node@v1
-#     with:
-#       node-version: ${{ matrix.node-version }}
+    steps:
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
 
 
       # Checks-out your repository under $GITHUB_WORKSPACE, 
       # so your workflow can access it
-      - name: Checkout repo
-        uses: actions/checkout@master
+    - name: Checkout repo
+      uses: actions/checkout@master
         
     - run: |
         cd ~
@@ -32,10 +32,9 @@ jobs:
         cp $GITHUB_WORKSPACE/* src/images
         npm run build
         npm run dist:firefox
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          files: |
-            ~/browser/dist/dist-firefox.zip
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          ~/browser/dist/dist-firefox.zip
