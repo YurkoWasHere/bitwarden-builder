@@ -28,9 +28,10 @@ jobs:
         cd browser
         npm install
         cp -rv $GITHUB_WORKSPACE/icons-hypha/* apps/browser/src/images/
+        cd apps/browser
         npm run build
         npm run dist:firefox
-        cp ~/browser/dist/dist-firefox.zip ~
+        cp ~/browser/apps/browser/dist/dist-firefox.zip ~
         cd ..
         ls
     - name: Release
