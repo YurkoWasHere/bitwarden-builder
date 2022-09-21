@@ -32,6 +32,7 @@ jobs:
         npm run dist:firefox
         cp ~/browser/dist/dist-firefox.zip ~
         cd ..
+        ls
     - name: Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
