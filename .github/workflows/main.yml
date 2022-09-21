@@ -32,7 +32,7 @@ jobs:
         npm run build
         npm run dist:firefox
         cp ~/browser/apps/browser/dist/dist-firefox.zip ~
-        cd ..
+        cd ~
         ls
     - name: Release
       uses: softprops/action-gh-release@v1
