@@ -31,7 +31,8 @@ jobs:
         cd apps/browser
         npm run build
         npm run dist:firefox
-        cp ~/browser/apps/browser/dist/dist-firefox.zip ~
+        mkdir ~/release
+        cp ~/browser/apps/browser/dist/dist-firefox.zip ~/release
         cd ~
         ls
     - name: Release
@@ -39,4 +40,4 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
-          ~/dist-firefox.zip
+          release/*
