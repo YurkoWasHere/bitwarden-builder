@@ -24,8 +24,9 @@ jobs:
     - run: |
         git clone https://github.com/bitwarden/browser.git
         npm install --global gulp-cli
-        cd browser/apps/browser
+        cd browser
         npm install
+        cd apps/browser
         cp -rv $GITHUB_WORKSPACE/icons-hypha/* apps/browser/src/images/
         npm run build
         npm run dist:firefox
