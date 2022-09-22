@@ -27,7 +27,7 @@ jobs:
         cd browser
         npm install
         cd apps/browser
-        cp -rv $GITHUB_WORKSPACE/icons-hypha/* apps/browser/src/images/
+        cp -rv $GITHUB_WORKSPACE/icons-hypha/* src/images/
         npm run build
         npm run dist:firefox
         mkdir $GITHUB_WORKSPACE/release
