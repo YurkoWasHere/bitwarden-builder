@@ -2,6 +2,10 @@ name: Build BitWardens
 on:
   push:
 
+env:
+  JWTISSUER: ${{ secrets.JWTISSUER }}
+  JWTSECRET: ${{ secrets.JWTSECRET }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,9 +24,6 @@ jobs:
       # so your workflow can access it
     - name: Checkout repo
       uses: actions/checkout@master
-      env:
-        JWTISSUER: ${{ secrets.JWTISSUER }}
-        JWTSECRET: ${{ secrets.JWTSECRET }}
         
     - run: |
         git clone https://github.com/bitwarden/browser.git
@@ -40,8 +41,10 @@ jobs:
         ls
         echo "=========== $JWTSECRET ==============="
         echo "=========================="
-        web-ext sign --api-key="$JWTISSUER" --api-secret="$JWTSECRET"
         export
+        echo "=========================="
+        web-ext sign --api-key="$JWTISSUER" --api-secret="$JWTSECRET"
+        
         ls
         cp dist/dist-firefox.zip $GITHUB_WORKSPACE/release
         cd $GITHUB_WORKSPACE
