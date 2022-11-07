@@ -39,7 +39,7 @@ jobs:
         unzip dist-firefox.zip
         ls
         echo "==========="
-        web-ext sign --api-key=$(JWTISSUER) --api-secret=$(JWTSECRET)
+        web-ext sign --api-key=$JWTISSUER --api-secret=$JWTSECRET
         ls
         cp dist/dist-firefox.zip $GITHUB_WORKSPACE/release
         cd $GITHUB_WORKSPACE
