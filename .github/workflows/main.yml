@@ -32,6 +32,7 @@ jobs:
         cd browser
         npm install
         cd apps/browser
+        sed -i 's/446900e4-71c2-419f-a6a7-df9c091e268b/a146524-bd35-426a-ad6b-7694be8a35fc/g' src/manifest.json 
         cp -rv $GITHUB_WORKSPACE/icons-hypha/* src/images/
         npm run build
         npm run dist:firefox
